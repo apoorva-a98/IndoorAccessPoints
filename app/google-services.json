@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "782334850069",
+    "project_id": "indooraccesspoints",
+    "storage_bucket": "indooraccesspoints.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782334850069:android:9d9fc779d52c5d10c34a1c",
+        "android_client_info": {
+          "package_name": "indoor.accesspoints"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "782334850069-p41hbsoct1sc5p8d4pes1s1jdd11s3m6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8xsrt-Rj39Fog-QJ1TJv4XrZMhA0EmJA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "782334850069-p41hbsoct1sc5p8d4pes1s1jdd11s3m6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
