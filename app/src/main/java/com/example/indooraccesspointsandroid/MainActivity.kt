@@ -11,6 +11,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.indooraccesspointsandroid.ui.theme.IndoorAccessPointsandroidTheme
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.net.wifi.WifiInfo
+import android.net.wifi.WifiManager
+import android.os.Build
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +33,18 @@ class MainActivity : ComponentActivity() {
                     Greeting("Android")
                 }
             }
+        }
+    }
+}
+
+class WifiUtils {
+    companion object {
+        @RequiresApi(Build.VERSION_CODES.Q)
+        fun getConnectedWifiName(context: Context): String? {
+            val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val network = connectivityManager.activeNetwork
+            val wifiInfo = network?.let { connectivityManager.getNetworkCapabilities(network)?.transportInfo as? WifiInfo }
+            return wifiInfo?.ssid
         }
     }
 }
