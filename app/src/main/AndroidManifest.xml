@@ -14,7 +14,8 @@
         android:theme="@style/Theme.IndoorAccessPointsandroid"
         tools:targetApi="31"
         tools:ignore="ExtraText">
-        <activity
+        <activity android:exported="true"
+            android:name="com.example.indooraccesspointsandroid.MainActivity">
             android:name=".MainActivity"
             android:exported="true"
 <!--            android:label="@string/app_name"-->
