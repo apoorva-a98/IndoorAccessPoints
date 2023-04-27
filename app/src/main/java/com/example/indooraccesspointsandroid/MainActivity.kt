@@ -24,6 +24,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+//            setContentView(R.layout.activity_main)
+//            val wifiName = getWifiName(this)
+//            Toast.makeText(this, "Connected to $wifiName", Toast.LENGTH_SHORT).show()
+
             IndoorAccessPointsandroidTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
@@ -36,17 +40,22 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+private fun getWifiName(context: Context): String {
+    val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    val networkInfo = connectivityManager.activeNetworkInfo
 
-class WifiUtils {
-    companion object {
-        @RequiresApi(Build.VERSION_CODES.Q)
-        fun getConnectedWifiName(context: Context): String? {
-            val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            val network = connectivityManager.activeNetwork
-            val wifiInfo = network?.let { connectivityManager.getNetworkCapabilities(network)?.transportInfo as? WifiInfo }
-            return wifiInfo?.ssid
-        }
+    if ((networkInfo != null) && (networkInfo.type == ConnectivityManager.TYPE_WIFI)) {
+        val wifiManager = context.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        val connectionInfo = wifiManager.connectionInfo
+
+        val bssid = connectionInfo.bssid
+        val ssid = connectionInfo.ssid
+
+        val wifiName = if (bssid != null && ssid != null) "$ssid ($bssid)" else ""
+        println("Connected to: $wifiName")
+        return wifiName
     }
+    return ""
 }
 
 @Composable
